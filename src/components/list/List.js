@@ -1,5 +1,6 @@
+
 import React from "react";
-import { Col, Container, Row, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 const productsArr = [
   {
@@ -26,8 +27,8 @@ const productsArr = [
 
 const List = () => {
   const products = productsArr.map((item, index) => (
-    <Col md={4} key={index}>
-      <Card style={{ width: "18rem" }}>
+    <Col md={3} key={index} className="mb-3">
+      <Card>
         <Card.Img variant="top" src={item.imageUrl} />
         <Card.Body>
           <Card.Title>{item.title}</Card.Title>
@@ -40,7 +41,7 @@ const List = () => {
 
   return (
     <Container>
-      <Row>{products}</Row>
+      <Row className="mt-4">{products}</Row> {/* Add margin between rows */}
     </Container>
   );
 };

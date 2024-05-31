@@ -1,13 +1,15 @@
 import React from "react";
-import { Nav, Navbar, Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Nav, Navbar, Container, Row, Col, Button } from "react-bootstrap";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <Container fluid>
       <Row>
-        <Col>
-          <Navbar bg="info" expand="sm" className="px-0"> {/* Add px-0 class to remove horizontal padding */}
-            <Container fluid> {/* Use fluid container to make it full width */}
+        <Col className="p-0">
+          <Navbar bg="info" expand="sm" className="px-0">
+            <Container fluid className="p-0">
+              {" "}
+              {/* Remove padding from Container */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto fw-bold">
@@ -16,21 +18,28 @@ const Header = () => {
                   <Nav.Link href="#link">About</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
-              <Button variant="light">Light</Button>
+              <Button variant="light" onClick={props.onShowCart}>
+                Show Cart
+              </Button>
             </Container>
           </Navbar>
         </Col>
       </Row>
-      <Row>
-        <Col className="p-0">
-          <Card bg="danger" className="m-0">
-            <Card.Body>This is some text within a card body.</Card.Body>
-          </Card>
-        </Col>
+      <Row
+        style={{
+          backgroundColor: "grey",
+          color: "white",
+          fontSize: "35px",
+          height: "150px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Col className="p-0">The Generics</Col>
       </Row>
     </Container>
   );
 };
 
 export default Header;
-
