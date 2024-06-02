@@ -1,9 +1,14 @@
-
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col, Modal, Button } from "react-bootstrap";
-import CartItems from "./CartItems";
+import Context from "../store/Context";
 
 const CartE = (props) => {
+  const { cart } = useContext(Context);
+
+  const calculateTotalAmount = () => {
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
+
   return (
     <Container>
       <Modal show={props.show} onHide={props.onClose} size="lg">
@@ -12,17 +17,26 @@ const CartE = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <Row className="align-items-center">
-              <Col md={2}><strong>Image</strong></Col>
-              <Col md={3}><strong>Title</strong></Col>
-              <Col md={3}><strong>Price</strong></Col>
-              <Col md={2}><strong>Quantity</strong></Col>
-            </Row>
-            <CartItems />
+            {cart.map((item) => (
+              <Row key={item.id} className="align-items-center">
+                <Col md={2}>
+                  <img src={item.imageUrl} alt={item.title} style={{ maxWidth: "100px", maxHeight: "100px" }} />
+                </Col>
+                <Col md={3}>
+                  <strong>{item.title}</strong>
+                </Col>
+                <Col md={3}>
+                  <strong>${item.price}</strong>
+                </Col>
+                <Col md={2}>
+                  <strong>{item.quantity}</strong>
+                </Col>
+              </Row>
+            ))}
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <div>Total Amount: $35.65</div>
+          <div>Total Amount: {calculateTotalAmount()}</div>
           <Button variant="secondary" onClick={props.onClose}>
             Close
           </Button>
@@ -33,3 +47,5 @@ const CartE = (props) => {
 };
 
 export default CartE;
+
+
