@@ -2,8 +2,8 @@ import React from "react";
 
 const Context = React.createContext({
   Cart: [],
-  AddItems: (item) => {},
-  RemoveItems: (item) => {},
+  AddMedItems: (item) => {},
+  RemoveMedItems: (item) => {},
   AddToMenu: (item) => {},
   MenuItems: [],
 });
